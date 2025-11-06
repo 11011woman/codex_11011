@@ -1,68 +1,86 @@
-body {
+/* === Global Layout === */
+html, body {
   margin: 0;
   padding: 0;
-  background: #0b0b0c;
-  color: #e8e8ea;
-  font-family: "Garamond", serif;
-  text-align: center;
-  height: 100vh;
+  background: radial-gradient(circle at 50% 20%, #203759 0%, #0b0f17 70%, #000 100%);
+  color: #cddcff;
+  font-family: "Inter", system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* Glass List Style */
+.item {
+  display: block;
+  margin: 10px 0;
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  transition: 0.25s;
+}
+.item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Search Box */
+.search {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 20px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.12);
+  color: white;
+  outline: none;
+}
+
+/* Icon Ribbon */
+.top-icons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
   display: flex;
-  justify-content: center;
+  gap: 18px;
+  font-size: 26px;
+  opacity: 0.85;
+}
+
+/* The Flame-Core Orb */
+.orb {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid rgba(200, 220, 255, 0.4);
+  display: flex;
   align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 18px rgba(80, 140, 255, 0.3);
+  animation: orbPulse 4s infinite ease-in-out;
 }
 
-.grid-field {
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                    radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 90px 90px, 150px 150px;
-  opacity: 0.14;
-  pointer-events: none;
+/* Flame symbol inside */
+.orb-flame {
+  width: 6px;
+  height: 20px;
+  background: linear-gradient(to bottom, #ff4e4e, #ffa34a);
+  border-radius: 50% 50% 40% 40%;
+}
+.orb-core {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: white;
+  margin-top: 4px;
 }
 
-.top-symbols {
-  position: fixed;
-  top: 1.2rem;
-  right: 1.4rem;
-  font-size: 1.3rem;
-  opacity: 0.65;
-}
-
-.icon {
-  margin-left: 0.4rem;
-}
-
-.center {
-  animation: fadeIn 3s ease forwards;
-}
-
-.subtitle {
-  margin-top: -0.4rem;
-  opacity: 0.72;
-}
-
-.enter {
-  display: inline-block;
-  margin-top: 1.8rem;
-  padding: 0.6rem 1.4rem;
-  color: #fff;
-  border: 1px solid #fff;
-  text-decoration: none;
-  transition: 0.4s ease;
-}
-
-.enter:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.footer-hint {
-  margin-top: 2.4rem;
-  opacity: 0.55;
-  font-size: 0.9rem;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes orbPulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(80,140,255,0.35); }
+  50%      { box-shadow: 0 0 34px rgba(120,190,255,0.7); }
 }
