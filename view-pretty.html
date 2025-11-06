@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Codex Entry</title>
-<link rel="stylesheet" href="codex.css">
+<link rel="stylesheet" href="../codex.css">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
@@ -11,14 +11,14 @@
 
 <div class="top-icons">🔥 🌙 🧊 🧭</div>
 
-<div id="content"></div>
+<div id="content" style="max-width: 750px; margin: 80px auto; line-height: 1.6;"></div>
 
 <script>
 async function load() {
-  const p = new URLSearchParams(location.search).get('f');
-  const r = await fetch(p);
-  const t = await r.text();
-  document.getElementById('content').innerHTML = marked.parse(t);
+  const file = new URLSearchParams(location.search).get('f');
+  const response = await fetch(`./${file}`);
+  const text = await response.text();
+  document.getElementById("content").innerHTML = marked.parse(text);
 }
 load();
 </script>
