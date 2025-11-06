@@ -11,19 +11,16 @@
       text-align: center;
       padding: 40px;
     }
-
     h1 {
       font-size: 38px;
       margin-bottom: 10px;
       letter-spacing: 1px;
     }
-
     .sub {
       color: #aaa;
       font-style: italic;
       margin-bottom: 30px;
     }
-
     input {
       padding: 6px 10px;
       width: 240px;
@@ -33,7 +30,6 @@
       color: #eee;
       margin-bottom: 20px;
     }
-
     a.item {
       display: block;
       margin: 10px auto;
@@ -46,18 +42,15 @@
       transition: 0.2s;
       color: #9dc3ff;
     }
-
     a.item:hover {
       background: #1b2230;
       border-color: #4a78c7;
       color: #ffffff;
     }
-
     .count {
       margin-top: 10px;
       color: #b5b5b5;
     }
-
     .back {
       display: inline-block;
       margin-bottom: 20px;
@@ -82,19 +75,18 @@
   <div id="list"></div>
 
   <script>
-    // Auto-detect .md files that GitHub Pages exposes through directory listing JSON
+    // Fetch the directory listing and extract markdown files
     fetch("./")
       .then(r => r.text())
       .then(html => {
-        // Extract .md filenames from HTML listing (works in GitHub pages environment)
         const regex = /href="([^"]+\.md)"/g;
         let match, files = [];
         while (match = regex.exec(html)) files.push(match[1]);
-
         window.mdFiles = files.sort();
         render();
       });
 
+    // Render the list, filtering by search term
     function render(filter = "") {
       filter = filter.toLowerCase();
       const list = document.getElementById("list");
@@ -102,7 +94,7 @@
         .filter(name => name.toLowerCase().includes(filter))
         .map((name, index) => {
           const clean = name.replace(".md", "").replace(/-/g, " ");
-          return `<a class="item" href="../view-pretty.html?f=codex/${encodeURIComponent(name)}">
+          return `<a class="item" href="../view-pretty.html?f=${encodeURIComponent(name)}">
                     ${index + 1}. ${clean}
                   </a>`;
         })
