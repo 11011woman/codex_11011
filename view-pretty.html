@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Codex ∞ 11011 — View</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="codex.css" />
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<meta charset="UTF-8">
+<title>Codex Entry</title>
+<link rel="stylesheet" href="codex.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
+
 <body>
-  <div class="wrap">
-    <p><a href="codex/index.html">← Back to Codex</a></p>
-    <div id="content" class="md"></div>
-  </div>
 
-  <script>
-    function getParam(name) {
-      const u = new URL(location.href);
-      return u.searchParams.get(name) || "";
-    }
+<div class="top-icons">🔥 🌙 🧊 🧭</div>
 
-    async function load() {
-      const file = getParam("f");
-      if (!file) { document.getElementById("content").textContent = "No file specified."; return; }
-      const url = `https://raw.githubusercontent.com/11011woman/codex_11011/main/${file}`;
-      const resp = await fetch(url, { cache: "no-store" });
-      if (!resp.ok) { document.getElementById("content").textContent = "File not found."; return; }
-      const text = await resp.text();
-      // Strip YAML front-matter for clean render
-      const cleaned = text.replace(/^---[\s\S]*?---\s*/,'');
-      document.getElementById("content").innerHTML = marked.parse(cleaned);
-    }
-    load();
-  </script>
+<div id="content"></div>
+
+<script>
+async function load() {
+  const p = new URLSearchParams(location.search).get('f');
+  const r = await fetch(p);
+  const t = await r.text();
+  document.getElementById('content').innerHTML = marked.parse(t);
+}
+load();
+</script>
+
 </body>
 </html>
