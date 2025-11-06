@@ -1,34 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>View Entry</title>
-<link rel="stylesheet" href="codex.css">
+<title>Codex Viewer</title>
+<link rel="stylesheet" href="../codex.css">
 </head>
+
 <body style="padding:40px; max-width:900px; margin:auto;">
 
-<div class="top-icons">🔥 🌙 🧊 🧭</div>
+<!-- Back link -->
+<p><a href="index.html" style="color:#9bbcff;">← Back to Codex</a></p>
 
-<div class="orb">
-  <div style="display:flex; flex-direction:column; align-items:center;">
-    <div class="orb-flame"></div>
-    <div class="orb-core"></div>
-  </div>
-</div>
+<!-- Content container -->
+<div id="content" style="line-height:1.6; font-size:18px;"></div>
 
-<div id="content"></div>
+<!-- Load Markdown Renderer -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <script>
 async function load() {
+  // Get file path from URL
   const p = new URLSearchParams(location.search).get('f');
+
+  // Fetch raw markdown
   const r = await fetch(p);
   const t = await r.text();
-  const html = marked.parse(t);
-  document.getElementById('content').innerHTML = html;
+
+  // Convert MD → HTML
+  document.getElementById('content').innerHTML = marked.parse(t);
 }
+
+load();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script>load();</script>
 
 </body>
 </html>
