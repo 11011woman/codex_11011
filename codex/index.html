@@ -36,31 +36,46 @@
   </div>
 
 <script>
+const OWNER = "11011woman";
+const REPO = "codex_11011";
+const API = (path) => `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`;
+
+function titleize(s) {
+  return s
+    .replace(/\.md$/i, '')
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, (m) => m.toUpperCase());
+}
+
 async function load() {
-  const res = await fetch('https://api.github.com/repos/11011woman/codex_11011/contents/codex');
-  if (!res.ok) return;
-  const files = await res.json();
-  
-  const entries = files.filter(f => f.name.endsWith('.md'));
-  const list = document.getElementById('list');
-  const status = document.getElementById('status');
+  const r = await fetch(API("codex"), { cache: 'no-store' });
+  if (!r.ok) return;
+  const files = await r.json();
 
-  status.textContent = `${entries.length} entries`;
+  const mdFiles = files.filter(f => f.type === "file" && /\.md$/i.test(f.name));
 
-  function render(filter = '') {
+  const list = document.getElementById("list");
+  const status = document.getElementById("status");
+  status.textContent = `${mdFiles.length} entries`;
+
+  function render(filter = "") {
     const f = filter.toLowerCase();
-    list.innerHTML = entries
-      .filter(e => e.name.toLowerCase().includes(f))
-      .map(e => `
-        <a class="card item" href="/codex_11011/view-pretty.html?f=codex/${encodeURIComponent(e.name)}">
-          <div class="title">${e.name.replace('.md','').replace(/[-_]/g,' ')}</div>
+    list.innerHTML = mdFiles
+      .filter(x => !f || x.name.toLowerCase().includes(f) || titleize(x.name).toLowerCase().includes(f))
+      .map((x, i) => `
+        <a class="card item" href="/codex_11011/view-pretty.html?f=codex/${encodeURIComponent(x.name)}">
+          <div class="num">${i + 1}.</div>
+          <div>
+            <div class="title">${titleize(x.name)}</div>
+            <div class="hint">${x.name}</div>
+          </div>
         </a>
       `)
       .join('');
   }
 
   render();
-  document.getElementById('q').addEventListener('input', e => render(e.target.value));
+  document.getElementById("q").addEventListener("input", (e) => render(e.target.value));
 }
 
 load();
