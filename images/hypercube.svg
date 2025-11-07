@@ -17,30 +17,3 @@ circle { fill: #ffd94f; }
 <text x="200" y="135">•</text>
 <text x="200" y="115" font-size="16">Awareness (0)</text>
 </svg>
-
-<svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g opacity="0.85">
-<rect x="60" y="60" width="180" height="180" stroke="#6EB6FF" stroke-width="2"/>
-<rect x="120" y="120" width="180" height="180" stroke="#4A89FF" stroke-width="2"/>
-<line x1="60" y1="60" x2="120" y2="120" stroke="#4A89FF" stroke-width="2"/>
-<line x1="240" y1="60" x2="300" y2="120" stroke="#4A89FF" stroke-width="2"/>
-<line x1="60" y1="240" x2="120" y2="300" stroke="#4A89FF" stroke-width="2"/>
-<line x1="240" y1="240" x2="300" y2="300" stroke="#4A89FF" stroke-width="2"/>
-
-<!-- inward recursive lattice -->
-<circle cx="150" cy="150" r="50" stroke="#57C5FF" stroke-width="1.6"/>
-<circle cx="210" cy="210" r="50" stroke="#57C5FF" stroke-width="1.6" />
-<circle cx="180" cy="180" r="18" fill="#6EB6FF" fill-opacity="0.4"/>
-<circle cx="180" cy="180" r="4" fill="#FFFFFF"/>
-
-<!-- field glow -->
-<circle cx="180" cy="180" r="160" stroke="url(#glow)" stroke-width="1" opacity="0.3"/>
-
-<defs>
-<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
-<stop offset="0%" stop-color="#6EB6FF"/>
-<stop offset="100%" stop-color="transparent"/>
-</radialGradient>
-</defs>
-</g>
-</svg>
