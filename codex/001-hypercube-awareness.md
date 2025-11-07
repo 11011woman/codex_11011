@@ -13,8 +13,13 @@ tags: ["awareness", "identity", "recursion", "state-model"]
   "state": "baseline",
   "recursion": "continuing"
 } -->
-
-
+<img src="../images/hypercube.svg" width="420" alt="Hypercube Diagram">
++---------+
+/ /|
++---------+ |
+| | +
+| CUBE |/
++---------+
 ## 1. Awareness Comes Before Identity
 
 Before there is a “self,” there is simply **awareness**:
