@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Codex Entry</title>
+<link rel="stylesheet" href="../codex.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+<div id="content"></div>
+
+<script>
+async function load() {
+  const f = new URLSearchParams(location.search).get('f');
+  const r = await fetch("../" + f);        // ✅ CRITICAL: this is the fix
+  const t = await r.text();
+  document.getElementById("content").innerHTML = marked.parse(t);
+}
+load();
+</script>
+
+</body>
+</html>
